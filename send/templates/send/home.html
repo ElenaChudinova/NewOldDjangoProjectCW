@@ -1,0 +1,21 @@
+{% extends 'users/base.html' %}
+{% block content %}
+<div class="album py-4 bg-body-tertiary">
+    <section class="py-3 text-center container">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5>Количество рассылок: <span class="badge text-bg-secondary"><a href="{% url 'send:newsletter_list' %}">
+                                <button type="button" class="btn btn-secondary">{{newsletter_all}}</button></a></span></h5>
+                            <h5>Количество активных рассылок: <span class="badge text-bg-secondary"><a href="#">
+                                <button type="button" class="btn btn-secondary">{{newsletter}}</button></a></span></h5>
+                            <h5>Количество уникальных получателей: <span class="badge text-bg-secondary"><a href="{% url 'send:client_list' %}">
+                                <button type="button" class="btn btn-secondary">{{mailings}}</button></a></span></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+</div>
+{% endblock %}

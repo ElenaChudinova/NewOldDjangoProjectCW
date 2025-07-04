@@ -1,0 +1,29 @@
+{% extends 'users/base.html' %}
+{% block content%}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-body mt-1">
+                    <h5 class="card-title">Рассылка</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ newsletter.first_shipment }}</h6>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{newsletter.end_shipment}}</h6>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{newsletter.status_news_letter}}</h6>
+                    <p class="card-text">{{newsletter.message}}</p>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{client}}</h6>
+                    <a href="{% url 'send:newsletter_update' newsletter.pk %}" class="card-link">Редактировать</a>
+                    <a href="{% url 'send:newsletter_delete' newsletter.pk %}" class="card-link">Удалить</a>
+                    <form action="{% url 'send:sendnewsletterlist' newsletter.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success">Отправить рассылку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="btn-group mt-3">
+            <a class="btn btn-primary" href="{% url 'send:home' %}" role="button">Назад</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

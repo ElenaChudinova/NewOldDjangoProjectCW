@@ -1,0 +1,25 @@
+{% extends 'users/base.html' %}
+{% block content%}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for client in object_list %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body mt-1">
+                    <h5 class="card-title">Карточка клиента</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{client.email}}</h6>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Ф.И.О.: {{client.name}}</h6>
+                    <p class="card-text">Комментарий: {{client.comment}}</p>
+                    <a href="{% url 'send:client_update' client.pk %}" class="card-link">Редактировать</a>
+                    <a href="{% url 'send:client_delete' client.pk %}" class="card-link">Удалить</a>
+                    <a href="#" class="card-link">Запустить рассылку</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="btn-group mt-3">
+            <a class="btn btn-primary" href="{% url 'send:home' %}" role="button">Назад</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
