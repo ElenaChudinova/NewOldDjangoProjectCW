@@ -1,0 +1,38 @@
+{% extends 'users/base.html' %}
+{% block content%}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID попытки</th>
+                    <th scope="col">Время попытки</th>
+                    <th scope="col">Статус</th>
+                    <th scope="col">Ответ почтового сервера</th>
+                    <th scope="col">ID рассылки</th>
+                    <th scope="col">Тема рассылки</th>
+                    <th scope="col">Владелец</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for attempt in attempts %}
+                <tr>
+                    <th scope="row">{{ attempt.pk }}</th>
+                    <th>{{ attempt.date_attempt }}</th>
+                    <th>{{ attempt.status }}</th>
+                    <th>{{ attempt.answer_post_server }}</th>
+                    <th>{{ attempt.id }}</th>
+                    <th>{{ attempt.subject_letter }}</th>
+                    <th>{{ attempt.letter }}</th>
+                    <th>{{ attempt.owner }}</th>
+                </tr>
+                </tbody>
+            </table>
+            {% endfor %}
+        </div>
+       <div class="btn-group mt-3">
+        <a class="btn btn-primary" href="{% url 'send:home' %}" role="button">Назад</a>
+    </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'users/base.html' %}
+{% block content%}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for message in object_list %}
+            <div class="card" style="width: 20rem;">
+                <div class="card-body mt-1">
+                    <h5 class="card-title">Карточка сообщения</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{message.subject_letter}}</h6>
+                    <p class="card-text">Комментарий: {{message.letter}}</p>
+                    <a href="{% url 'send:message_update' message.pk %}" class="card-link">Редактировать</a>
+                    <a href="{% url 'send:message_delete' message.pk %}" class="card-link">Удалить</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="btn-group mt-3">
+            <a class="btn btn-primary" href="{% url 'send:home' %}" role="button">Назад</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
